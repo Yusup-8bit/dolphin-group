@@ -5,23 +5,23 @@ import { KeyboardEvent, useState } from "react";
 
 const states = {
   before: {
-    label: "До автоматизации",
+    label: "Before automation",
     eyebrow: "Manual flow",
     items: [
-      { title: "Ручная обработка заявок", detail: "Менеджер читает и распределяет каждое обращение.", icon: UserRound },
-      { title: "Перенос данных", detail: "Информация копируется между формой, таблицей и CRM.", icon: RefreshCcw },
-      { title: "Подготовка отчётов", detail: "Показатели собираются вручную из нескольких источников.", icon: FileSpreadsheet },
-      { title: "Повторяющиеся действия", detail: "Следующий шаг зависит от памяти и загрузки сотрудника.", icon: Send },
+      { title: "Manual intake", detail: "A manager reads and routes every inquiry.", icon: UserRound },
+      { title: "Data re-entry", detail: "Information is copied across forms, spreadsheets, and CRM.", icon: RefreshCcw },
+      { title: "Report preparation", detail: "Metrics are assembled manually from several sources.", icon: FileSpreadsheet },
+      { title: "Repeated follow-up", detail: "The next action depends on a teammate’s memory and workload.", icon: Send },
     ],
   },
   after: {
-    label: "После автоматизации",
+    label: "After automation",
     eyebrow: "Connected flow",
     items: [
-      { title: "Автоматическая маршрутизация", detail: "Заявка сразу попадает в нужный сценарий и ответственному.", icon: Route },
-      { title: "Синхронизация CRM", detail: "Карточка и статус обновляются по заданным правилам.", icon: RefreshCcw },
-      { title: "Формирование отчётов", detail: "Данные собираются в единый актуальный срез.", icon: FileSpreadsheet },
-      { title: "Уведомления и AI-помощник", detail: "Система подсказывает контекст и запускает следующий шаг.", icon: Bot },
+      { title: "Automatic routing", detail: "Each inquiry enters the right workflow and reaches the right owner.", icon: Route },
+      { title: "CRM synchronization", detail: "Records and states update through defined rules.", icon: RefreshCcw },
+      { title: "Live reporting", detail: "Data is assembled into a shared, current view.", icon: FileSpreadsheet },
+      { title: "Alerts and AI assistance", detail: "The system surfaces context and triggers the next step.", icon: Bot },
     ],
   },
 } as const;
@@ -44,11 +44,11 @@ export default function AutomationComparison() {
     <div className="grid overflow-hidden border bg-white lg:grid-cols-[320px_1fr]">
       <div className="border-b p-5 sm:p-7 lg:border-b-0 lg:border-r">
         <span className="font-mono text-[9px] font-bold uppercase tracking-[.16em] text-brand">Automation / compare</span>
-        <h3 className="mt-4 text-2xl font-extrabold tracking-[-0.05em] text-ink sm:text-3xl">Один процесс.<br />Два состояния.</h3>
-        <p className="mt-4 leading-7 text-muted">Переключите режим, чтобы увидеть, как меняются связи и роль команды.</p>
-        <div className="mt-7 grid grid-cols-2 border" role="tablist" aria-label="Состояние процесса" onKeyDown={handleKeyDown}>
+        <h3 className="mt-4 text-2xl font-extrabold tracking-[-0.05em] text-ink sm:text-3xl">One process.<br />Two states.</h3>
+        <p className="mt-4 leading-7 text-muted">Switch the view to see how connections and team responsibilities change.</p>
+        <div className="mt-7 grid grid-cols-2 border" role="tablist" aria-label="Process state" onKeyDown={handleKeyDown}>
           {(Object.keys(states) as StateKey[]).map((key) => (
-            <button key={key} id={`automation-tab-${key}`} type="button" role="tab" tabIndex={active === key ? 0 : -1} aria-selected={active === key} aria-controls="automation-panel" className={`min-h-12 px-3 text-sm font-bold transition-colors ${active === key ? "bg-brand text-white" : "bg-white text-muted hover:bg-blue-50"}`} onClick={() => setActive(key)}>{key === "before" ? "До" : "После"}</button>
+            <button key={key} id={`automation-tab-${key}`} type="button" role="tab" tabIndex={active === key ? 0 : -1} aria-selected={active === key} aria-controls="automation-panel" className={`min-h-12 px-3 text-sm font-bold transition-colors ${active === key ? "bg-brand text-white" : "bg-white text-muted hover:bg-blue-50"}`} onClick={() => setActive(key)}>{key === "before" ? "Before" : "After"}</button>
           ))}
         </div>
       </div>

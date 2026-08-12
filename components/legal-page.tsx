@@ -22,7 +22,7 @@ export function LegalPage({
       <div className="mx-auto max-w-5xl">
         <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink hover:text-brand">
           <ArrowLeft size={18} aria-hidden="true" />
-          На главную
+          Back to home
         </Link>
 
         <div className="mt-12 border-t pt-10 sm:mt-16 sm:pt-14">
@@ -48,7 +48,7 @@ export function LegalPage({
         </div>
 
         <p className="mt-8 text-sm leading-6 text-muted">
-          Редакция документа: 1 августа 2026 года. Перед публикацией требуется проверка реквизитов и контактных данных владельцем сайта.
+          Document version: August 1, 2026. Company details and contact information must be verified by the site owner before commercial launch.
         </p>
       </div>
     </main>

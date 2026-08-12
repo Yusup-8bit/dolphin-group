@@ -50,19 +50,19 @@ function validate(fields: FormFields): FieldErrors {
   const phoneDigits = fields.contact.replace(/\D/g, "").length;
 
   if (fields.name.trim().length < 2) {
-    errors.name = "Укажите имя — не менее 2 символов.";
+    errors.name = "Enter at least 2 characters.";
   }
   if (!isEmail && phoneDigits < 7) {
-    errors.contact = "Введите корректный email или номер телефона.";
+    errors.contact = "Enter a valid email address or phone number.";
   }
   if (!fields.service) {
-    errors.service = "Выберите направление проекта.";
+    errors.service = "Choose a project direction.";
   }
   if (fields.message.trim().length < 20) {
-    errors.message = "Опишите задачу чуть подробнее — минимум 20 символов.";
+    errors.message = "Tell us a little more — at least 20 characters.";
   }
   if (!fields.consent) {
-    errors.consent = "Нужно согласие на обработку данных.";
+    errors.consent = "Consent to data processing is required.";
   }
 
   const requiredExtras = getDynamicFields(fields.service as ServiceId);
@@ -109,9 +109,20 @@ export function ContactForm() {
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
-      const firstInvalid = event.currentTarget.querySelector<HTMLElement>(
-        "[aria-invalid='true']",
-      );
+      const firstKey = Object.keys(nextErrors)[0] as keyof FormFields;
+      const fieldIds: Partial<Record<keyof FormFields, string>> = {
+        name: "name",
+        contact: "contact-value",
+        company: "company",
+        service: "service",
+        message: "message",
+      };
+      const selector =
+        firstKey === "consent"
+          ? '[name="consent"]'
+          : `#${fieldIds[firstKey] ?? `extra-${firstKey}`}`;
+      const firstInvalid =
+        event.currentTarget.querySelector<HTMLElement>(selector);
       firstInvalid?.focus();
       return;
     }
@@ -146,30 +157,30 @@ export function ContactForm() {
             Project brief / 01
           </span>
           <h3 className="mt-2 text-2xl font-extrabold tracking-[-0.05em] text-ink sm:text-3xl">
-            Расскажите о задаче
+            Tell us about the challenge
           </h3>
         </div>
         <span className="max-w-[240px] text-xs leading-5 text-muted">
-          Сейчас форма работает в демонстрационном режиме и не отправляет данные.
+          This form is currently in demo mode and does not send data.
         </span>
       </div>
 
       {fields.service && fields.service in serviceById ? (
         <div className="mb-7 flex items-center justify-between border border-blue-200 bg-blue-50 p-3 text-sm">
-          <span className="text-muted">Выбранное направление</span>
+          <span className="text-muted">Selected direction</span>
           <strong className="text-brand">{serviceById[fields.service as ServiceId].shortTitle}</strong>
         </div>
       ) : null}
 
       <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
-        <Field label="Ваше имя" error={errors.name}>
+        <Field label="Your name" error={errors.name}>
           <input
             id="name"
             name="name"
             type="text"
             autoComplete="name"
             className={inputClassName}
-            placeholder="Как к вам обращаться"
+            placeholder="How should we address you?"
             value={fields.name}
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? "name-error" : undefined}
@@ -177,7 +188,7 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label="Email или телефон" error={errors.contact}>
+        <Field label="Email or phone" error={errors.contact}>
           <input
             id="contact-value"
             name="contact"
@@ -185,7 +196,7 @@ export function ContactForm() {
             autoComplete="email"
             inputMode="email"
             className={inputClassName}
-            placeholder="name@company.ru или +998..."
+            placeholder="name@company.com or +1..."
             value={fields.contact}
             aria-invalid={Boolean(errors.contact)}
             aria-describedby={errors.contact ? "contact-error" : undefined}
@@ -193,21 +204,21 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label="Компания" error={errors.company}>
+        <Field label="Company" error={errors.company}>
           <input
             id="company"
             name="company"
             type="text"
             autoComplete="organization"
             className={inputClassName}
-            placeholder="Название или сфера бизнеса"
+            placeholder="Company name or industry"
             value={fields.company}
             aria-invalid={Boolean(errors.company)}
             onChange={(event) => updateField("company", event.target.value)}
           />
         </Field>
 
-        <Field label="Направление" error={errors.service}>
+        <Field label="Project direction" error={errors.service}>
           <select
             id="service"
             name="service"
@@ -217,7 +228,7 @@ export function ContactForm() {
             aria-describedby={errors.service ? "service-error" : undefined}
             onChange={(event) => updateField("service", event.target.value)}
           >
-            <option value="">Выберите услугу</option>
+            <option value="">Choose a service</option>
             {services.map((service) => (
               <option key={service.id} value={service.id}>{service.shortTitle}</option>
             ))}
@@ -235,13 +246,13 @@ export function ContactForm() {
         ))}
 
         <div className="sm:col-span-2">
-          <Field label="О задаче" error={errors.message}>
+          <Field label="Project context" error={errors.message}>
             <textarea
               id="message"
               name="message"
               rows={4}
               className={`${inputClassName} resize-y`}
-              placeholder="Что нужно создать, соединить или автоматизировать?"
+              placeholder="What do you need to build, connect, or automate?"
               value={fields.message}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "message-error" : undefined}
@@ -262,9 +273,9 @@ export function ContactForm() {
           onChange={(event) => updateField("consent", event.target.checked)}
         />
         <span>
-          Согласен на обработку данных в соответствии с{" "}
+          I agree to data processing in accordance with the{" "}
           <Link href="/privacy" className="font-semibold text-ink underline decoration-slate-300 underline-offset-4 hover:text-brand">
-            политикой конфиденциальности
+            privacy policy
           </Link>
           .
         </span>
@@ -281,7 +292,7 @@ export function ContactForm() {
           disabled={status === "loading"}
           className="group flex min-h-14 items-center justify-between gap-8 bg-brand px-5 text-left font-bold text-white transition-colors hover:bg-brand-deep disabled:cursor-wait disabled:opacity-70 sm:min-w-[240px]"
         >
-          {status === "loading" ? "Отправляем..." : "Отправить заявку"}
+          {status === "loading" ? "Sending..." : "Send project brief"}
           {status === "loading" ? (
             <LoaderCircle className="animate-spin" aria-hidden="true" />
           ) : (
@@ -289,24 +300,24 @@ export function ContactForm() {
           )}
         </button>
         <span className="text-xs leading-5 text-muted">
-          Ответ на заявку — после подключения рабочего канала связи.
+          We can respond once a live contact channel is connected.
         </span>
       </div>
 
       <div className="mt-5 min-h-12" aria-live="polite">
         {status === "not-configured" ? (
           <StatusMessage tone="info">
-            Данные проверены, но не отправлены: канал связи пока не подключён.
+            Your details are valid, but were not sent because the contact channel is not connected yet.
           </StatusMessage>
         ) : null}
         {status === "error" ? (
           <StatusMessage tone="error">
-            Не удалось отправить заявку. Данные остались в форме — попробуйте ещё раз позже.
+            We could not send the brief. Your details remain in the form — please try again later.
           </StatusMessage>
         ) : null}
         {status === "success" ? (
           <StatusMessage tone="success">
-            Заявка отправлена. Спасибо — команда свяжется с вами по указанному контакту.
+            Your brief was sent. Thank you — our team will contact you using the details provided.
           </StatusMessage>
         ) : null}
       </div>
@@ -333,17 +344,17 @@ type DynamicFieldConfig = {
 function getDynamicFields(service?: ServiceId): DynamicFieldConfig[] {
   const fieldsByService: Partial<Record<ServiceId, DynamicFieldConfig[]>> = {
     mvp: [
-      { key: "productType", label: "Тип продукта", placeholder: "B2B-сервис, личный кабинет, marketplace...", error: "Укажите тип будущего продукта." },
-      { key: "productStage", label: "Текущая стадия", placeholder: "Идея, прототип или существующий продукт", error: "Укажите текущую стадию продукта." },
+      { key: "productType", label: "Product type", placeholder: "B2B service, customer portal, marketplace...", error: "Tell us what kind of product you are planning." },
+      { key: "productStage", label: "Current stage", placeholder: "Idea, prototype, or existing product", error: "Tell us the product’s current stage." },
     ],
-    crm: [{ key: "processDescription", label: "Основной процесс", placeholder: "Продажи, производство, сервис, логистика...", error: "Укажите процесс для CRM или дашборда." }],
-    api: [{ key: "systems", label: "Какие сервисы нужно соединить", placeholder: "CRM, ERP, сайт, платёжная система...", error: "Перечислите используемые сервисы." }],
-    cloud: [{ key: "infrastructure", label: "Текущая инфраструктура", placeholder: "Сервер, провайдер, контейнеры, ограничения...", error: "Опишите текущую инфраструктуру." }],
-    commerce: [{ key: "commercePlatform", label: "Текущая платформа", placeholder: "Новый проект, Shopify, WooCommerce, custom...", error: "Укажите текущую или планируемую платформу." }],
-    ai: [{ key: "agentTask", label: "Задача будущего AI-помощника", placeholder: "Поддержка, документы, квалификация лидов...", error: "Опишите задачу будущего помощника." }],
-    growth: [{ key: "processDescription", label: "Как движется лид сейчас", placeholder: "От источника до CRM и следующего действия", error: "Коротко опишите текущий процесс." }],
-    analytics: [{ key: "systems", label: "Источники данных", placeholder: "CRM, ERP, реклама, таблицы, база данных...", error: "Перечислите источники данных." }],
-    rpa: [{ key: "processDescription", label: "Какой процесс повторяется", placeholder: "Шаги, системы и типичные исключения", error: "Опишите повторяющийся процесс." }],
+    crm: [{ key: "processDescription", label: "Core workflow", placeholder: "Sales, manufacturing, service, logistics...", error: "Describe the workflow for the CRM or dashboard." }],
+    api: [{ key: "systems", label: "Systems to connect", placeholder: "CRM, ERP, website, payment service...", error: "List the systems you currently use." }],
+    cloud: [{ key: "infrastructure", label: "Current infrastructure", placeholder: "Servers, provider, containers, constraints...", error: "Describe the current infrastructure." }],
+    commerce: [{ key: "commercePlatform", label: "Current platform", placeholder: "New build, Shopify, WooCommerce, custom...", error: "Name the current or planned platform." }],
+    ai: [{ key: "agentTask", label: "AI assistant task", placeholder: "Support, documents, lead qualification...", error: "Describe the future assistant’s task." }],
+    growth: [{ key: "processDescription", label: "Current lead journey", placeholder: "From source to CRM and the next action", error: "Briefly describe the current process." }],
+    analytics: [{ key: "systems", label: "Data sources", placeholder: "CRM, ERP, ads, spreadsheets, database...", error: "List the relevant data sources." }],
+    rpa: [{ key: "processDescription", label: "Repeated process", placeholder: "Steps, systems, and common exceptions", error: "Describe the repetitive process." }],
   };
 
   return service ? fieldsByService[service] ?? [] : [];
@@ -379,18 +390,18 @@ function Field({
   error?: string;
   children: React.ReactNode;
 }) {
-  const errorId = `${label === "Email или телефон" ? "contact" : label === "Направление" ? "service" : label === "О задаче" ? "message" : label === "Ваше имя" ? "name" : "company"}-error`;
+  const errorId = `${label === "Email or phone" ? "contact" : label === "Project direction" ? "service" : label === "Project context" ? "message" : label === "Your name" ? "name" : "company"}-error`;
 
   return (
     <div>
       <label className="block text-sm font-bold text-ink" htmlFor={
-        label === "Ваше имя"
+        label === "Your name"
           ? "name"
-          : label === "Email или телефон"
+          : label === "Email or phone"
             ? "contact-value"
-            : label === "Компания"
+            : label === "Company"
               ? "company"
-              : label === "Направление"
+              : label === "Project direction"
                 ? "service"
                 : "message"
       }>

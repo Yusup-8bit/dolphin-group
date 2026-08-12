@@ -5,12 +5,12 @@ import { BarChart3, Bot, Braces, Cloud, LayoutDashboard, PanelsTopLeft } from "l
 import { useState } from "react";
 
 const nodes = [
-  { id: "web", label: "Web App", description: "Продуктовый интерфейс для клиентов и команды.", icon: PanelsTopLeft, position: "left-[6%] top-[17%]" },
-  { id: "crm", label: "CRM", description: "Операционный контур, статусы и действия команды.", icon: LayoutDashboard, position: "right-[6%] top-[17%]" },
-  { id: "api", label: "API", description: "Единый слой обмена данными между всеми системами.", icon: Braces, position: "left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2" },
-  { id: "cloud", label: "Cloud", description: "Среда запуска, хранения и масштабирования продукта.", icon: Cloud, position: "bottom-[18%] left-[7%]" },
-  { id: "ai", label: "AI", description: "Помощник, который работает с контекстом и системами.", icon: Bot, position: "bottom-[18%] right-[7%]" },
-  { id: "analytics", label: "Analytics", description: "Понятные сигналы и отчёты для принятия решений.", icon: BarChart3, position: "bottom-[3%] left-1/2 -translate-x-1/2" },
+  { id: "web", label: "Web App", description: "A product interface for customers and internal teams.", icon: PanelsTopLeft, position: "left-[6%] top-[17%]" },
+  { id: "crm", label: "CRM", description: "Operational states, responsibilities, and next actions.", icon: LayoutDashboard, position: "right-[6%] top-[17%]" },
+  { id: "api", label: "API", description: "A shared exchange layer connecting every business system.", icon: Braces, position: "left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2" },
+  { id: "cloud", label: "Cloud", description: "The environment for running, storing, and scaling the product.", icon: Cloud, position: "bottom-[18%] left-[7%]" },
+  { id: "ai", label: "AI", description: "An assistant that works with trusted context and systems.", icon: Bot, position: "bottom-[18%] right-[7%]" },
+  { id: "analytics", label: "Analytics", description: "Clear signals and reports for confident decisions.", icon: BarChart3, position: "bottom-[3%] left-1/2 -translate-x-1/2" },
 ] as const;
 
 export function InteractiveEcosystem() {
@@ -32,7 +32,7 @@ export function InteractiveEcosystem() {
 
       <div className="absolute inset-x-5 top-5 z-20 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.16em] text-slate-400 sm:inset-x-7 sm:top-7">
         <span>Ecosystem / interactive</span>
-        <span className="flex items-center gap-2 text-cyan"><i className="signal-pulse size-1.5 rounded-full bg-cyan" />Контур активен</span>
+        <span className="flex items-center gap-2 text-cyan"><i className="signal-pulse size-1.5 rounded-full bg-cyan" />System active</span>
       </div>
 
       <svg viewBox="0 0 520 620" className="absolute inset-0 size-full" aria-hidden="true" preserveAspectRatio="none">
@@ -52,7 +52,7 @@ export function InteractiveEcosystem() {
         </g>
       </svg>
 
-      <div className="absolute inset-0 z-10" role="group" aria-label="Интерактивная схема цифровой экосистемы Dolphin Group">
+      <div className="absolute inset-0 z-10" role="group" aria-label="Interactive map of the Dolphin Group digital ecosystem">
         {nodes.map((node) => {
           const Icon = node.icon;
           const isActive = node.id === active;
@@ -82,7 +82,7 @@ export function InteractiveEcosystem() {
         <p className="mt-1">{activeNode.description}</p>
       </div>
 
-      <p className="sr-only">Web App, CRM, Cloud, AI и Analytics соединены через единый API-контур Dolphin Group.</p>
+      <p className="sr-only">Web App, CRM, Cloud, AI, and Analytics connect through a shared Dolphin Group API layer.</p>
     </div>
   );
 }

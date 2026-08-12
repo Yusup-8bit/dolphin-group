@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Пользовательское соглашение",
-  description: "Условия использования сайта Dolphin Group.",
+  title: "Terms of Use",
+  description: "Terms for using the Dolphin Group website.",
   alternates: { canonical: "/terms" },
 };
 
@@ -11,31 +11,31 @@ export default function TermsPage() {
   return (
     <LegalPage
       eyebrow="Legal / Terms"
-      title="Пользовательское соглашение"
-      intro="Используя сайт Dolphin Group, посетитель принимает изложенные ниже условия. Материалы страницы носят информационный характер и не являются публичной офертой."
+      title="Terms of Use"
+      intro="By using the Dolphin Group website, a visitor accepts the terms below. The website is provided for informational purposes and does not constitute a binding commercial offer."
       sections={[
         {
-          title: "Назначение сайта",
+          title: "Purpose of the website",
           paragraphs: [
-            "Сайт знакомит посетителей с направлениями работы Dolphin Group и предоставляет интерфейс для первичного обращения. Конкретные сроки, стоимость и состав проекта определяются только после обсуждения и отдельного согласования.",
+            "The website introduces Dolphin Group’s areas of work and provides an interface for an initial inquiry. Project scope, timing, and pricing are determined only after discussion and separate agreement.",
           ],
         },
         {
-          title: "Достоверность информации",
+          title: "Accuracy of information",
           paragraphs: [
-            "Компания стремится поддерживать материалы в актуальном состоянии, но не даёт неподтверждённых гарантий результата. Упомянутые технологии и направления не заменяют индивидуальную оценку проекта.",
+            "The company aims to keep website content current, but does not make unsupported guarantees of results. The technologies and capabilities mentioned do not replace an individual project assessment.",
           ],
         },
         {
-          title: "Интеллектуальные права",
+          title: "Intellectual property",
           paragraphs: [
-            "Тексты, композиция и визуальные элементы сайта предназначены для представления Dolphin Group. Их использование вне обычного просмотра требует согласования с правообладателем.",
+            "The copy, composition, and visual elements of this website are intended to represent Dolphin Group. Use beyond ordinary viewing requires permission from the relevant rights holder.",
           ],
         },
         {
-          title: "Обратная связь",
+          title: "Contact",
           paragraphs: [
-            "Пока официальный контакт и API формы не опубликованы, отправка данных с сайта отключена. Условия связи и реквизиты владельца должны быть добавлены перед коммерческим запуском.",
+            "Until an official contact channel and form API are published, data submission from the website remains disabled. Contact terms and company details must be added before commercial launch.",
           ],
         },
       ]}

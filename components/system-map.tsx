@@ -3,7 +3,7 @@ export function SystemMap() {
     <div
       className="relative isolate min-h-[470px] overflow-hidden bg-navy p-5 text-white sm:min-h-[540px] sm:p-7 lg:h-full lg:min-h-full"
       role="img"
-      aria-label="Схема единой цифровой инфраструктуры: продукт и CRM соединяются через слой Dolphin Group с данными, AI и облаком"
+      aria-label="Unified digital infrastructure: product and CRM connect through the Dolphin Group layer to data, AI, and cloud services"
     >
       <div
         aria-hidden="true"
@@ -15,7 +15,7 @@ export function SystemMap() {
         <span>System map / live</span>
         <span className="flex items-center gap-2 text-cyan">
           <span className="signal-pulse size-1.5 rounded-full bg-cyan" />
-          Контур готов
+          System ready
         </span>
       </div>
 
@@ -57,13 +57,13 @@ export function SystemMap() {
 
       <div className="absolute left-[7%] top-[24%] z-10 w-[34%] max-w-[148px] border border-slate-700 bg-[#101e3d] p-3 sm:p-4 lg:top-[27%]">
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">Input / 01</span>
-        <strong className="mt-2 block text-sm font-bold sm:text-base">Продукт</strong>
+        <strong className="mt-2 block text-sm font-bold sm:text-base">Product</strong>
         <span className="mt-1 block text-xs leading-5 text-slate-400">Web · MVP · Commerce</span>
       </div>
 
       <div className="absolute bottom-[18%] left-[7%] z-10 w-[34%] max-w-[148px] border border-slate-700 bg-[#101e3d] p-3 sm:p-4 lg:bottom-[27%]">
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">Input / 02</span>
-        <strong className="mt-2 block text-sm font-bold sm:text-base">Операции</strong>
+        <strong className="mt-2 block text-sm font-bold sm:text-base">Operations</strong>
         <span className="mt-1 block text-xs leading-5 text-slate-400">CRM · RPA · Sales</span>
       </div>
 
@@ -80,13 +80,13 @@ export function SystemMap() {
 
       <div className="absolute right-[7%] top-[24%] z-10 w-[34%] max-w-[148px] border border-slate-700 bg-[#101e3d] p-3 sm:p-4 lg:top-[27%]">
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">Output / 01</span>
-        <strong className="mt-2 block text-sm font-bold sm:text-base">Данные + AI</strong>
+        <strong className="mt-2 block text-sm font-bold sm:text-base">Data + AI</strong>
         <span className="mt-1 block text-xs leading-5 text-slate-400">Analytics · Agents</span>
       </div>
 
       <div className="absolute bottom-[18%] right-[7%] z-10 w-[34%] max-w-[148px] border border-slate-700 bg-[#101e3d] p-3 sm:p-4 lg:bottom-[27%]">
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-slate-500">Output / 02</span>
-        <strong className="mt-2 block text-sm font-bold sm:text-base">Облако</strong>
+        <strong className="mt-2 block text-sm font-bold sm:text-base">Cloud</strong>
         <span className="mt-1 block text-xs leading-5 text-slate-400">AWS · GCP · Azure</span>
       </div>
 

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Dolphin Group — цифровые системы для бизнеса";
+export const alt = "Dolphin Group — connected digital systems for business";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -37,7 +37,7 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
             <div style={{ fontSize: 74, lineHeight: 0.98, letterSpacing: "-0.055em", fontWeight: 800, maxWidth: 850 }}>
-              Соединяем бизнес с технологиями, которые работают.
+              We connect business with technology that works.
             </div>
             <div style={{ width: 94, height: 94, background: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, fontWeight: 800 }}>
               DG

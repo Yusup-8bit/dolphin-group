@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Политика конфиденциальности",
-  description: "Политика обработки персональных данных на сайте Dolphin Group.",
+  title: "Privacy Policy",
+  description: "How personal data is handled on the Dolphin Group website.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -11,32 +11,32 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       eyebrow="Legal / Privacy"
-      title="Политика конфиденциальности"
-      intro="Этот документ описывает принципы обработки данных на сайте Dolphin Group. Текущая контактная форма является демонстрационной и без подключённого API ничего не отправляет."
+      title="Privacy Policy"
+      intro="This document outlines the principles for handling data on the Dolphin Group website. The current contact form is a demonstration and does not send data without a configured API."
       sections={[
         {
-          title: "Какие данные могут обрабатываться",
+          title: "Data that may be processed",
           paragraphs: [
-            "После подключения рабочего канала связи форма сможет передавать имя, email или телефон, название компании, выбранную услугу и описание задачи — только после явного действия пользователя.",
-            "Сайт не должен запрашивать специальные категории персональных данных, платёжные реквизиты или пароли.",
+            "Once a live contact channel is configured, the form may transmit a name, email address or phone number, company name, selected service, and project description — only after an explicit user action.",
+            "The website should not request special categories of personal data, payment details, or passwords.",
           ],
         },
         {
-          title: "Цель обработки",
+          title: "Purpose of processing",
           paragraphs: [
-            "Данные используются только для ответа на обращение, уточнения задачи и обсуждения возможного проекта. Они не должны использоваться для несогласованных рассылок или передаваться третьим лицам без законного основания.",
+            "Data is used only to respond to an inquiry, clarify the challenge, and discuss a potential project. It should not be used for unsolicited marketing or shared with third parties without a lawful basis.",
           ],
         },
         {
-          title: "Хранение и защита",
+          title: "Storage and protection",
           paragraphs: [
-            "Сроки хранения, место размещения данных и ответственный оператор должны быть уточнены при подключении реального API или сервиса форм. До этого момента сайт не заявляет о фактическом хранении обращений.",
+            "Retention periods, storage location, and the responsible data operator must be confirmed when a live API or form service is connected. Until then, this website does not claim to store submitted inquiries.",
           ],
         },
         {
-          title: "Права пользователя",
+          title: "Your rights",
           paragraphs: [
-            "Пользователь может запросить сведения об обработке, исправление или удаление своих данных через официальный контакт компании после его публикации на сайте.",
+            "You may request information about processing, correction, or deletion of your data through the company’s official contact channel once it is published on the website.",
           ],
         },
       ]}

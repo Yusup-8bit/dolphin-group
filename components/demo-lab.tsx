@@ -5,10 +5,10 @@ import { KeyboardEvent, useState } from "react";
 import { ServiceVisual } from "@/components/service-visuals";
 
 const demos = [
-  { id: "crm", label: "CRM-дашборд", description: "Воронка, сигналы и рабочие статусы в одном операционном представлении.", icon: LayoutDashboard, visual: "crm" as const },
-  { id: "ai", label: "AI-агент", description: "Диалог с источниками, контекстом и прозрачным вызовом инструментов.", icon: Bot, visual: "ai" as const },
-  { id: "api", label: "API-контур", description: "Связи сервисов, центральный gateway и наблюдаемые состояния обмена.", icon: Braces, visual: "api" as const },
-  { id: "analytics", label: "Аналитический отчёт", description: "Показатели, динамика и сигналы, собранные вокруг управленческого вопроса.", icon: ChartNoAxesCombined, visual: "analytics" as const },
+  { id: "crm", label: "CRM dashboard", description: "Pipeline, signals, and working states in one operational view.", icon: LayoutDashboard, visual: "crm" as const },
+  { id: "ai", label: "AI agent", description: "A conversation grounded in sources, context, and visible tool calls.", icon: Bot, visual: "ai" as const },
+  { id: "api", label: "API layer", description: "Service connections, a central gateway, and observable exchange states.", icon: Braces, visual: "api" as const },
+  { id: "analytics", label: "Analytics report", description: "Metrics, change, and signals organized around a management question.", icon: ChartNoAxesCombined, visual: "analytics" as const },
 ] as const;
 
 export default function DemoLab() {
@@ -28,13 +28,13 @@ export default function DemoLab() {
       <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
         <div>
           <span className="font-mono text-[9px] uppercase tracking-[.16em] text-cyan">Demo interfaces / not client work</span>
-          <div className="mt-5 space-y-2" role="tablist" aria-label="Демонстрационные интерфейсы" onKeyDown={handleKeyDown}>
+          <div className="mt-5 space-y-2" role="tablist" aria-label="Demo interfaces" onKeyDown={handleKeyDown}>
             {demos.map((demo, index) => {
               const Icon = demo.icon;
               return <button key={demo.id} id={`demo-tab-${index}`} type="button" role="tab" tabIndex={activeIndex === index ? 0 : -1} aria-selected={activeIndex === index} aria-controls="demo-panel" className={`flex min-h-14 w-full items-center gap-3 border p-3 text-left text-sm font-bold transition-colors ${activeIndex === index ? "border-brand bg-brand" : "border-slate-700 bg-[#101e3d] text-slate-300 hover:border-blue-400"}`} onClick={() => setActiveIndex(index)}><Icon size={17} aria-hidden="true" />{demo.label}<span className="ml-auto font-mono text-[8px]">0{index + 1}</span></button>;
             })}
           </div>
-          <p className="mt-5 text-xs leading-5 text-slate-500">Все интерфейсы — объясняющие demo-композиции, а не изображения клиентских проектов.</p>
+          <p className="mt-5 text-xs leading-5 text-slate-500">These interfaces explain possible mechanics. They are not presented as client work.</p>
         </div>
         <div id="demo-panel" role="tabpanel" aria-labelledby={`demo-tab-${activeIndex}`} aria-live="polite">
           <ServiceVisual service={active.visual} />

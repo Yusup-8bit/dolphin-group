@@ -4,10 +4,11 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { id: "services", label: "Услуги", href: "#services" },
-  { id: "process", label: "Подход", href: "#process" },
-  { id: "technology", label: "Технологии", href: "#technology" },
-  { id: "about", label: "О компании", href: "#about" },
+  { id: "services", label: "Services", href: "#services" },
+  { id: "work", label: "Work", href: "#work" },
+  { id: "process", label: "Approach", href: "#process" },
+  { id: "technology", label: "Technology", href: "#technology" },
+  { id: "about", label: "Company", href: "#about" },
 ];
 
 export function SiteHeader() {
@@ -63,7 +64,7 @@ export function SiteHeader() {
         <a
           href="#top"
           className="group flex min-h-11 items-center gap-3 rounded-sm text-ink"
-          aria-label="Dolphin Group — на главную"
+          aria-label="Dolphin Group — home"
           onClick={() => setIsOpen(false)}
         >
           <span className="relative grid size-8 place-items-center overflow-hidden bg-brand text-[11px] font-extrabold tracking-[-0.04em] text-white">
@@ -75,7 +76,7 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Основная навигация">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -100,7 +101,7 @@ export function SiteHeader() {
             href="#contact"
             className="group hidden min-h-11 items-center gap-2 bg-ink px-5 text-sm font-bold text-white transition-colors duration-200 hover:bg-brand sm:flex"
           >
-            Обсудить проект
+            Discuss a project
             <ArrowUpRight
               size={16}
               aria-hidden="true"
@@ -110,7 +111,7 @@ export function SiteHeader() {
           <button
             type="button"
             className="grid size-11 place-items-center text-ink transition-colors hover:bg-blue-100 lg:hidden"
-            aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsOpen((current) => !current)}
@@ -135,9 +136,9 @@ export function SiteHeader() {
             : "invisible -translate-y-3 opacity-0"
         }`}
       >
-        <nav className="mx-auto flex h-full max-w-2xl flex-col" aria-label="Мобильная навигация">
+        <nav className="mx-auto flex h-full max-w-2xl flex-col" aria-label="Mobile navigation">
           <span className="mb-5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-muted">
-            Навигация / 05
+            Navigation / 05
           </span>
           {navItems.map((item, index) => {
             const isActive = activeSection === item.id;
@@ -163,7 +164,7 @@ export function SiteHeader() {
             className="mt-auto flex min-h-14 items-center justify-between bg-brand px-5 font-bold text-white"
             onClick={() => setIsOpen(false)}
           >
-            Обсудить проект
+            Discuss a project
             <ArrowUpRight aria-hidden="true" />
           </a>
         </nav>

@@ -71,12 +71,12 @@ function ServiceDetail({ service, onSelect }: { service: (typeof services)[numbe
   return (
     <div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <div><span className="font-mono text-[9px] uppercase tracking-[.15em] text-cyan">Задача</span><p className="mt-2 text-sm leading-6 text-slate-300">{service.problem}</p></div>
-        <div><span className="font-mono text-[9px] uppercase tracking-[.15em] text-cyan">Формат результата</span><p className="mt-2 text-sm leading-6 text-slate-300">{service.result}</p></div>
+        <div><span className="font-mono text-[9px] uppercase tracking-[.15em] text-cyan">Challenge</span><p className="mt-2 text-sm leading-6 text-slate-300">{service.problem}</p></div>
+        <div><span className="font-mono text-[9px] uppercase tracking-[.15em] text-cyan">Deliverable</span><p className="mt-2 text-sm leading-6 text-slate-300">{service.result}</p></div>
       </div>
       <div className="mt-5 flex flex-wrap gap-2">{service.includes.map((item) => <span key={item} className="border border-slate-600 bg-[#101e3d] px-3 py-2 text-xs text-slate-200">{item}</span>)}</div>
       <button type="button" onClick={onSelect} className="group mt-6 flex min-h-12 w-full items-center justify-between bg-brand px-4 font-bold text-white transition-colors hover:bg-brand-deep sm:w-auto sm:min-w-[230px]">
-        Обсудить услугу <ArrowRight className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        Discuss this service <ArrowRight className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
       </button>
     </div>
   );
